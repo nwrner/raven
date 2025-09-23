@@ -1,0 +1,11 @@
+# gitrepo.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: raven
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: https://github.com/nwrner/raven
+  ref:
+    branch: main   # or master if that’s your branch

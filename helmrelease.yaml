@@ -1,0 +1,19 @@
+# helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hello-raven
+  namespace: default
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./hello-chart    # path in your repo where Chart.yaml lives
+      sourceRef:
+        kind: GitRepository
+        name: raven
+        namespace: flux-system
+  values:
+    replicaCount: 3
+    service:
+      type: NodePort
