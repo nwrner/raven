@@ -1,0 +1,21 @@
+replicaCount: 10
+
+image:
+  repository: hello-python
+  tag: v1
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 8080
+
+probes:
+  readiness:
+    path: /
+    initialDelaySeconds: 1
+    periodSeconds: 5
+  liveness:
+    path: /
+    initialDelaySeconds: 5
+    periodSeconds: 10
