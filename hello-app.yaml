@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-raven
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/nwrner/raven
+    targetRevision: main   # or master if that's your branch
+    path: hello-chart      # folder in your repo where Chart.yaml lives
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true        # remove stuff not in Git
+      selfHeal: true     # fix drift automatically
