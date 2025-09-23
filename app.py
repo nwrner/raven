@@ -29,7 +29,7 @@ class HelloHandler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     # Run server on port 8080
-    server_address = ("", 8090)
+    server_address = ("", 8080)
     httpd = HTTPServer(server_address, HelloHandler)
-    print("Serving on http://localhost:8090 ...")
+    print("Serving on http://localhost:8080 ...")
     httpd.serve_forever()

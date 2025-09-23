@@ -2,7 +2,7 @@ replicaCount: 7
 
 image:
   repository: hello-python
-  tag: v2
+  tag: v2.1
   pullPolicy: IfNotPresent
 
 service:
