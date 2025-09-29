@@ -1,8 +1,8 @@
 replicaCount: 10
 
 image:
-  repository: hello-python
-  tag: v2.1
+  repository: rng-app
+  tag: v3
   pullPolicy: IfNotPresent
 
 service:
@@ -12,10 +12,10 @@ service:
 
 probes:
   readiness:
-    path: /__bad_probe__
+    path: /healthz
     initialDelaySeconds: 1
     periodSeconds: 5
   liveness:
-    path: /__bad_probe__
+    path: /healthz
     initialDelaySeconds: 5
     periodSeconds: 10
