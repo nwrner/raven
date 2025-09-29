@@ -1,4 +1,4 @@
-replicaCount: 7
+replicaCount: 10
 
 image:
   repository: hello-python
@@ -12,10 +12,10 @@ service:
 
 probes:
   readiness:
-    path: /
+    path: /__bad_probe__
     initialDelaySeconds: 1
     periodSeconds: 5
   liveness:
-    path: /
+    path: /__bad_probe__
     initialDelaySeconds: 5
     periodSeconds: 10
