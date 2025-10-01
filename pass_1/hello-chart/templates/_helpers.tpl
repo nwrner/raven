@@ -1,7 +1,7 @@
 {{- define "hello-chart.name" -}}
-hello-app
+{{ .Chart.Name }}
 {{- end }}
 
 {{- define "hello-chart.fullname" -}}
-hello-app
+{{ .Release.Name }}-{{ .Chart.Name }}
 {{- end }}

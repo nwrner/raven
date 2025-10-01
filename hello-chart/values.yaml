@@ -1,21 +1,11 @@
-replicaCount: 15
+replicaCount: 1
 
 image:
-  repository: rng-app
-  tag: v3
+  repository: hello-app
+  tag: v1
   pullPolicy: IfNotPresent
 
 service:
   type: NodePort
   port: 80
   targetPort: 8080
-
-probes:
-  readiness:
-    path: /healthz
-    initialDelaySeconds: 1
-    periodSeconds: 5
-  liveness:
-    path: /healthz
-    initialDelaySeconds: 5
-    periodSeconds: 10
