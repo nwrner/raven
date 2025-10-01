@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: hello-app
-  tag: latest
+  tag: v5
   pullPolicy: IfNotPresent
 
 service:
