@@ -1,14 +1,33 @@
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+from flask import Flask
+import os
 
-class HelloHandler(SimpleHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
-        self.wfile.write(b"<h1>Hello from Kubernetes!</h1>")
+app = Flask(__name__)
+
+# Health state toggle
+healthy = True
+
+@app.route("/")
+def home():
+    return "Hello from the chaos lab! 💥"
+
+@app.route("/healthz")
+def healthz():
+    if healthy:
+        return "ok", 200
+    else:
+        return "not ok", 500
+
+@app.route("/failz")
+def failz():
+    global healthy
+    healthy = False
+    return "Marked unhealthy 😈", 200
+
+@app.route("/fixz")
+def fixz():
+    global healthy
+    healthy = True
+    return "Back to healthy ✅", 200
 
 if __name__ == "__main__":
-    server_address = ("", 8080)
-    httpd = HTTPServer(server_address, HelloHandler)
-    print("🚀 Serving on http://localhost:8080 ...")
-    httpd.serve_forever()
+    app.run(host="0.0.0.0", port=8080)

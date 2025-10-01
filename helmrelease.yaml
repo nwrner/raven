@@ -1,0 +1,20 @@
+# helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hello-app
+  namespace: default
+spec:
+  interval: 1m
+  chart:
+    spec:
+      chart: ./hello-chart   # 👈 points to the chart dir in repo
+      sourceRef:
+        kind: GitRepository
+        name: raven-repo
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    service:
+      type: ClusterIP
+      port: 80
